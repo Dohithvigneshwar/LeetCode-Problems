@@ -40,7 +40,29 @@ public class Valid_Parentheses_20{
     }
 }
 class Solution {
-    public boolean isValid(String s) {
+	//Efficient Solution
+	public boolean isValid(String s) {
+        ArrayList<Character> list = new ArrayList<>();
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            if(c=='(') list.add(')');
+            else if(c=='[') list.add(']');
+            else if(c=='{') list.add('}');
+            else{
+                if(list.size()==0) return false;                
+                if(c==list.get(list.size()-1)){
+                    list.remove(list.size()-1);
+                }
+                else{
+                    return false;
+                }
+            }
+        }    
+        if(list.isEmpty()) return true;
+        return false;
+    }
+//The below code it take more time to execute the result 
+   /* public boolean isValid(String s) {
         String openStr = "";
 		String closeStr = "";
 		String open = "{([";
@@ -82,4 +104,5 @@ class Solution {
 		}
 		return openStr;
 	}
+	*/
 }
